@@ -1,6 +1,10 @@
 const mongoose = require("mongoose")
 
 const CreatedSurveySchema = new mongoose.Schema({
+	date: {
+    type: Date,
+    required: true,
+  },
 	name: {
     type: String,
     required: true,

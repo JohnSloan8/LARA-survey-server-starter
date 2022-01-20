@@ -6,7 +6,7 @@ const CreatedSurveyModel = require("../models/CreatedSurveys")
 
 mongoose.connect("mongodb+srv://john:Mongojaguar1@laracluster0.wpvro.mongodb.net/LARA-survey?retryWrites=true&w=majority")
 
-router.get("/api/v1/getCreatedSurveys", (req, res) => {
+router.get("/getCreatedSurveys", (req, res) => {
 	CreatedSurveyModel.find({}, (err, result) => {
 		console.log('result:', result)
 		if (err) {
@@ -17,7 +17,7 @@ router.get("/api/v1/getCreatedSurveys", (req, res) => {
 	})
 })
 
-router.post("/api/v1/createSurvey", async (req, res) => {
+router.post("/createSurvey", async (req, res) => {
 	console.log('req.body:', req.body)
 	const createdSurvey = req.body;
 	const newCreatedSurvey = new CreatedSurveyModel(createdSurvey);

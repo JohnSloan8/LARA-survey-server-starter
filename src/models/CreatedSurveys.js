@@ -1,23 +1,23 @@
 const mongoose = require("mongoose")
 
 const CreatedSurveySchema = new mongoose.Schema({
-	name: {
+	Name: {
     type: String,
     required: true,
   },
-  language: {
+  Language: {
     type: String,
     required: true,
   },
-  story: {
+  Story: {
     type: String,
     required: true,
   },
-  sentenceSelection: {
+  How should sentences be selected: {
     type: String,
     required: true,
   },
-  numberSentences: {
+  How many sentences in survey: {
     type: String,
     required: true,
   },

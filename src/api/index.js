@@ -17,6 +17,17 @@ router.get("/getCreatedSurveys", (req, res) => {
 	})
 })
 
+router.get("/getSurveyById/:id", (req, res) => {
+	CreatedSurveyModel.findById(req.params.id, (err, result) => {
+		console.log('result:', result)
+		if (err) {
+			res.json(err)
+		} else {
+			res.json(result)
+		}
+	})
+})
+
 router.post("/createSurvey", async (req, res) => {
 	console.log('req.body:', req.body)
 	const createdSurvey = req.body;

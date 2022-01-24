@@ -25,6 +25,10 @@ const CreatedSurveySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  sentenceList: {
+    type: Array,
+    required: true,
+  },
 })
 
 const CreatedSurveyModel = mongoose.model("CreatedSurveys", CreatedSurveySchema)

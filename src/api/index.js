@@ -67,7 +67,7 @@ router.post("/createCoord", async (req, res) => {
 
 router.get("/getCoordByURL/:id", (req, res) => {
 	console.log('id:', result)
-	CoordModel.find({name: req.params.id}, (err, result) => {
+	CoordModel.findOne({name: req.params.id}, (err, result) => {
 		console.log('result:', result)
 		if (err) {
 			res.json(err)

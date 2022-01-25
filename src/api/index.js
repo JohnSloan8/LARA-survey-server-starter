@@ -3,6 +3,7 @@ const emojis = require('./emojis');
 const router = express.Router();
 const mongoose = require("mongoose")
 const CreatedSurveyModel = require("../models/CreatedSurveys")
+const CoordsModel = require("../models/Coords")
 
 mongoose.connect("mongodb+srv://john:Mongojaguar1@laracluster0.wpvro.mongodb.net/LARA-survey?retryWrites=true&w=majority")
 
@@ -43,5 +44,37 @@ router.get('/', (req, res) => {
 });
 
 router.use('/emojis', emojis);
+
+
+router.get("/getCoords", (req, res) => {
+	CoordsModel.find({}, (err, result) => {
+		console.log('result:', result)
+		if (err) {
+			res.json(err)
+		} else {
+			res.json(result)
+		}
+	})
+})
+
+router.post("/createCoords", async (req, res) => {
+	console.log('req.body:', req.body)
+	const coords = req.body;
+	const newCoords = new CoordsModel(coords);
+	await newCoords.save();
+	res.json(coords);
+})
+
+router.get("/getCoordsByURL/:id", (req, res) => {
+	CoordsModel.findById(req.params.id, (err, result) => {
+		console.log('result:', result)
+		if (err) {
+			res.json(err)
+		} else {
+			res.json(result)
+		}
+	})
+})
+
 
 module.exports = router;

@@ -3,7 +3,7 @@ const emojis = require('./emojis');
 const router = express.Router();
 const mongoose = require("mongoose")
 const CreatedSurveyModel = require("../models/CreatedSurveys")
-const CoordsModel = require("../models/Coords")
+const CoordModel = require("../models/PictureBookCoords")
 
 mongoose.connect("mongodb+srv://john:Mongojaguar1@laracluster0.wpvro.mongodb.net/LARA-survey?retryWrites=true&w=majority")
 
@@ -46,8 +46,8 @@ router.get('/', (req, res) => {
 router.use('/emojis', emojis);
 
 
-router.get("/getCoords", (req, res) => {
-	CoordsModel.find({}, (err, result) => {
+router.get("/getCoord", (req, res) => {
+	CoordModel.find({}, (err, result) => {
 		console.log('result:', result)
 		if (err) {
 			res.json(err)
@@ -57,16 +57,16 @@ router.get("/getCoords", (req, res) => {
 	})
 })
 
-router.post("/createCoords", async (req, res) => {
+router.post("/createCoord", async (req, res) => {
 	console.log('req.body:', req.body)
-	const coords = req.body;
-	const newCoords = new CoordsModel(coords);
-	await newCoords.save();
-	res.json(coords);
+	const coord = req.body;
+	const newCoord = new CoordModel(coord);
+	await newCoord.save();
+	res.json(coord);
 })
 
-router.get("/getCoordsByURL/:id", (req, res) => {
-	CoordsModel.findById(req.params.id, (err, result) => {
+router.get("/getCoordByURL/:id", (req, res) => {
+	CoordModel.findById(req.params.id, (err, result) => {
 		console.log('result:', result)
 		if (err) {
 			res.json(err)
@@ -75,6 +75,5 @@ router.get("/getCoordsByURL/:id", (req, res) => {
 		}
 	})
 })
-
 
 module.exports = router;

@@ -1,11 +1,15 @@
 const mongoose = require("mongoose")
 
-const CoordsSchema = new mongoose.Schema({
+const CoordSchema = new mongoose.Schema({
 	url: {
+    type: String,
+    required: true,
+  },
+	coords: {
     type: Array,
     required: true,
   }
 })
 
-const CoordsModel = mongoose.model("Coords", CoordsSchema)
-module.exports = CoordsModel
+const CoordModel = mongoose.model("Coords", CoordSchema)
+module.exports = CoordModel

@@ -59,15 +59,29 @@ router.get("/getCoord", (req, res) => {
 
 router.post("/createCoord", async (req, res) => {
 	console.log('req.body:', req.body)
-	const coord = req.body;
-	const newCoord = new CoordModel(coord);
-	await newCoord.save();
-	res.json(coord);
+	console.log('req.body.name:', req.body.name)
+	CoordModel.findOne({name: req.body.name}, async (err, result) => {
+		if (err) {
+			res.json(err)
+		} else {
+			if (result === null) {
+				const coord = req.body;
+				const newCoord = new CoordModel(coord);
+				await newCoord.save();	
+				console.log('newCoord:', newCoord)
+				res.json(coord);
+			} else {
+				result.coords = req.body.coords
+				await result.save()
+				console.log('result:', result)
+			}
+		}
+	})
 })
 
 router.get("/getCoordByURL/:id", (req, res) => {
 	CoordModel.find({name: req.params.id}, (err, result) => {
-		//console.log('result:', result)
+		console.log('result:', result)
 		if (err) {
 			res.json(err)
 		} else {

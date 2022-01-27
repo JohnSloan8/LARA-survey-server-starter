@@ -4,6 +4,7 @@ const router = express.Router();
 const mongoose = require("mongoose")
 const CreatedSurveyModel = require("../models/CreatedSurveys")
 const CoordModel = require("../models/PictureBookCoords")
+const axios = require('axios')
 
 mongoose.connect("mongodb+srv://john:Mongojaguar1@laracluster0.wpvro.mongodb.net/LARA-survey?retryWrites=true&w=majority")
 
@@ -87,6 +88,43 @@ router.get("/getCoordByURL/:id", (req, res) => {
 		} else {
 			res.json(result)
 		}
+	})
+})
+
+router.post("/getIrishSynthesis", async (req, res) => {
+	
+  axios
+    .post(
+        "https://abair.ie/api2/synthesise",
+		{
+			"synthinput": {
+        "text": req.body.text,
+        "ssml": "string"
+      },
+      "voiceparams": {
+        "languageCode": "ga-IE",
+        "name": "ga_UL_anb_exthts",
+        "ssmlGender": "UNSPECIFIED"
+      },
+      "audioconfig": {
+        "audioEncoding": "LINEAR16",
+        "speakingRate": 1,
+        "pitch": 1,
+        "volumeGainDb": 1,
+        "sampleRateHertz": 0,
+        "effectsProfileId": []
+      },
+      "outputType": "JSON",
+      "timing": "PHONEME"
+		}
+      )
+      .then((json) => {
+				console.log('returned from json', json.data)
+				//dataURL = 'https://warm-reef-17230.herokuapp.com/api/v1/getCoordByURL/' + json.data.name
+				//APIInfoCont.style.visibility = "visible";
+				//clearAll();
+				//inputImageURL.style.visibility = "hidden"
+				//wordSelectorCont.style.visibility = "hidden"
 	})
 })
 

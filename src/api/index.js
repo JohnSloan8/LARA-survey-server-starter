@@ -125,6 +125,7 @@ router.post("/getIrishSynthesis", async (req, res) => {
 				//clearAll();
 				//inputImageURL.style.visibility = "hidden"
 				//wordSelectorCont.style.visibility = "hidden"
+				res.json(json.data)
 	})
 })
 

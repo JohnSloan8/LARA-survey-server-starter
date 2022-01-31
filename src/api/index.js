@@ -91,6 +91,20 @@ router.get("/getCoordByURL/:id", (req, res) => {
 	})
 })
 
+router.get("/getBookList", (req, res) => {
+	axios
+			 .get(
+				 "https://www.issco.unige.ch/en/research/projects/callector/word_locations/metadata.json"
+			 )
+			 .then(json =>
+				
+				 res.json(json.data)
+			 )
+			 .catch( err =>
+					res.json(err)
+			 )
+})
+
 router.post("/getIrishSynthesis", async (req, res) => {
 	
   axios

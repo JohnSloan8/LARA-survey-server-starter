@@ -105,6 +105,19 @@ router.get("/getBookList", (req, res) => {
 			 )
 })
 
+router.get("/getBook/:id", (req, res) => {
+	axios
+			 .get(
+				 "https://www.issco.unige.ch/en/research/projects/callector/word_locations/" + req.params.id + "/word_locations.json"
+			 )
+			 .then(json =>	
+				 res.json(json.data)
+			 )
+			 .catch( err =>
+					res.json(err)
+			 )
+})
+
 router.post("/getIrishSynthesis", async (req, res) => {
 	
   axios

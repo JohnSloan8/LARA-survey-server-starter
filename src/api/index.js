@@ -123,8 +123,8 @@ router.post("/getIrishSynthesis", async (req, res) => {
 	
   axios
     .post(
-        "https://abair.ie/api2/synthesise",
-        //"https://phoneticsrv3.lcs.tcd.ie/directapi/synthesise",
+        //"https://abair.ie/api2/synthesise",
+				"https://phoneticsrv3.lcs.tcd.ie/directapi/synthesise",
 		{
 			"synthinput": {
         "text": req.body.text,
@@ -132,7 +132,7 @@ router.post("/getIrishSynthesis", async (req, res) => {
       },
       "voiceparams": {
         "languageCode": "ga-IE",
-        "name": "ga_UL_anb_exthts",
+        "name": "ga_UL_anb_nnmnkwii",
         "ssmlGender": "UNSPECIFIED"
       },
       "audioconfig": {

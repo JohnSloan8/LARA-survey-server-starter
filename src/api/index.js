@@ -106,6 +106,7 @@ router.get("/getBookList", (req, res) => {
 })
 
 router.get("/getBook/:id", (req, res) => {
+	console.log('req.params.id:', req.params.id)
 	axios
 			 .get(
 				 "https://www.issco.unige.ch/en/research/projects/callector/word_locations/" + req.params.id + "/word_locations.json"

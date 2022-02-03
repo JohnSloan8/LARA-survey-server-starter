@@ -1,12 +1,16 @@
 const express = require('express');
 const emojis = require('./emojis');
+const picturebook = require('./picturebook');
 const router = express.Router();
 const mongoose = require("mongoose")
 const CreatedSurveyModel = require("../models/CreatedSurveys")
 const CoordModel = require("../models/PictureBookCoords")
 const axios = require('axios')
 
-mongoose.connect("mongodb+srv://john:Mongojaguar1@laracluster0.wpvro.mongodb.net/LARA-survey?retryWrites=true&w=majority")
+//mongoose.connect("mongodb+srv://john:Mongojaguar1@laracluster0.wpvro.mongodb.net/LARA-survey?retryWrites=true&w=majority")
+
+router.use('/emojis', emojis);
+router.use('/picturebook', picturebook);
 
 router.get("/getCreatedSurveys", (req, res) => {
 	CreatedSurveyModel.find({}, (err, result) => {
@@ -43,8 +47,6 @@ router.get('/', (req, res) => {
     message: 'API - 👋🌎🌍🌏'
   });
 });
-
-router.use('/emojis', emojis);
 
 
 router.get("/getCoord", (req, res) => {

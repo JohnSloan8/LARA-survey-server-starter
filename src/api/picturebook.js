@@ -4,12 +4,14 @@ const router = express.Router();
 const mongoose = require("mongoose")
 mongoose.connect("mongodb+srv://john:Mongojaguar1@laracluster0.wpvro.mongodb.net/LARA-Picturebook?retryWrites=true&w=majority")
 
-router.get("/getAllPictureBooks", (req, res) => {
+router.get("/getAllPictureBookNames", (req, res) => {
 	PictureBookModel.find({}, (err, result) => {
 		if (err) {
 			res.json(err)
 		} else {
-			res.json(result)
+			let nameList = []
+			result.forEach(n => nameList.push(n.name))
+			res.json(nameList)
 		}
 	})
 })

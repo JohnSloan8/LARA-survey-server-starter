@@ -8,6 +8,10 @@ const PictureBookSchema = new mongoose.Schema({
 	book: {
     type: Object,
     required: false
+  },
+	prefixURL: {
+    type: String,
+    required: true
   }
 })
 

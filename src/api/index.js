@@ -125,8 +125,8 @@ router.post("/getIrishSynthesis", async (req, res) => {
 	
   axios
     .post(
-        //"https://abair.ie/api2/synthesise",
-				"https://phoneticsrv3.lcs.tcd.ie/directapi/synthesise",
+        "https://abair.ie/api2/synthesise",
+				//"https://phoneticsrv3.lcs.tcd.ie/directapi/synthesise",
 		{
 			"synthinput": {
         "text": req.body.text,
@@ -146,7 +146,7 @@ router.post("/getIrishSynthesis", async (req, res) => {
         "effectsProfileId": []
       },
       "outputType": "JSON",
-      "timing": "PHONEME"
+      "timing": "BOTH"
 		}
       )
       .then((json) => {

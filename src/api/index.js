@@ -146,7 +146,7 @@ router.post("/getIrishSynthesis", async (req, res) => {
         "effectsProfileId": []
       },
       "outputType": "JSON",
-      "timing": "PHONEME"
+      "timing": "BOTH"
 		}
       )
       .then((json) => {

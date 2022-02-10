@@ -98,10 +98,10 @@ router.get("/getBookList", (req, res) => {
 			 .get(
 				 "https://www.issco.unige.ch/en/research/projects/callector/word_locations/metadata.json"
 			 )
-			 .then(json =>
-				
-				 res.json(json.data.text)
-			 )
+			 .then(json => {
+				 console.log('getBookList:', json.data.texts)
+				 res.json(json.data.texts)
+			 })
 			 .catch( err =>
 					res.json(err)
 			 )

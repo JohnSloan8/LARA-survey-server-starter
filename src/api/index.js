@@ -100,7 +100,7 @@ router.get("/getBookList", (req, res) => {
 			 )
 			 .then(json =>
 				
-				 res.json(json.data)
+				 res.json(json.data.text)
 			 )
 			 .catch( err =>
 					res.json(err)

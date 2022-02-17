@@ -6,9 +6,11 @@ const mongoose = require("mongoose")
 const CreatedSurveyModel = require("../models/CreatedSurveys")
 const CoordModel = require("../models/PictureBookCoords")
 const axios = require('axios')
+const cors = require('cors')
 
 //mongoose.connect("mongodb+srv://john:Mongojaguar1@laracluster0.wpvro.mongodb.net/LARA-survey?retryWrites=true&w=majority")
 
+router.use(cors())
 router.use('/emojis', emojis);
 router.use('/picturebook', picturebook);
 
@@ -125,7 +127,7 @@ router.post("/getIrishSynthesis", async (req, res) => {
 	
   axios
     .post(
-        "https://abair.ie/api2/synthesise",
+				"https://abair.ie/api2/synthesise",
 				//"https://phoneticsrv3.lcs.tcd.ie/directapi/synthesise",
 		{
 			"synthinput": {
@@ -151,13 +153,30 @@ router.post("/getIrishSynthesis", async (req, res) => {
       )
       .then((json) => {
 				console.log('returned from json', json.data)
-				//dataURL = 'https://warm-reef-17230.herokuapp.com/api/v1/getCoordByURL/' + json.data.name
-				//APIInfoCont.style.visibility = "visible";
-				//clearAll();
-				//inputImageURL.style.visibility = "hidden"
-				//wordSelectorCont.style.visibility = "hidden"
 				res.json(json.data)
 	})
+})
+
+router.post("/getIrishGramadoirCheck", async(req, res)=> {
+	console.log('req.body.text:', req.body.text)
+	const params = new URLSearchParams()
+	params.append("teacs", req.body.text)
+	params.append("teanga", "ga")
+  axios
+    .post(
+        "https://www.abair.ie/cgi-bin/api-gramadoir-1.0.pl",
+		params, 
+		{
+      headers: { 
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    }
+      )
+      .then((json) => {
+				console.log('returned from json', json.data)
+				res.json(json.data)
+	})
+
 })
 
 module.exports = router;

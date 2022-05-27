@@ -9,9 +9,37 @@ const MessageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-	text: {
+  verb: {
     type: String,
     required: true,
+  },
+  tense: {
+    type: String,
+    required: true,
+  },
+  form: {
+    type: String,
+    required: true,
+  },
+  question_no: {
+    type: Number,
+    required: true,
+  },
+	text: {
+    type: String,
+    required: false,
+  },
+  correct: {
+    type: Boolean,
+    required: false,
+  },
+  errorType: {
+    type: Number,
+    required: false,
+  },
+  timeTaken: {
+    type: Number,
+    required: false,
   },
 })
 

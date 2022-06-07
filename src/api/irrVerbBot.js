@@ -32,7 +32,6 @@ router.post("/createMessage", async (req, res) => {
 	});
 	await newMessage.save();	
 
-
 	res.json(newMessage);
 
 })
@@ -50,6 +49,18 @@ router.post("/updateMessage", async (req, res) => {
 	res.json({
 		"this": "that"
 	});
+
+})
+
+router.post("/createChat", async (req, res) => {
+
+	const newChat = new ChatModel({
+		"user_id": req.body.user_id,
+		"startTime": Date.now(),
+	});
+	await newChat.save();	
+
+	res.json(newChat._id);
 
 })
 

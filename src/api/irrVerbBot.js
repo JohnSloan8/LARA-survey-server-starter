@@ -59,6 +59,7 @@ router.post("/createChat", async (req, res) => {
 		"startTime": Date.now(),
 	});
 	await newChat.save();	
+	console.log('newChat:', newChat)
 
 	res.json(newChat._id);
 

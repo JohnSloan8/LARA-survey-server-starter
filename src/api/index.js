@@ -1,15 +1,15 @@
-const express = require('express');
-const irrVerbBot = require('./irrVerbBot');
+const express = require("express");
+const cors = require("cors");
+const irrVerbBot = require("./irrVerbBot");
 const router = express.Router();
-const mongoose = require("mongoose")
-const cors = require('cors')
 
-router.use(cors())
-router.use('/irrVerbBot', irrVerbBot);
+router.use(cors());
+router.use("/irrVerbBot", irrVerbBot);
+// router.use("/storyData", storyData);
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   res.json({
-    message: 'API - 👋🌎🌍🌏'
+    message: "API - 👋🌎🌍🌏",
   });
 });
 
